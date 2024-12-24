@@ -6,16 +6,18 @@ hide_streamlit_style = """
 <style>#root > div:nth-child(1) > div > div > div > div > section > div {padding-top: 1rem;}</style>
 """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
-st.title("💬 LLaMA3-8B 微调演示（甄嬛版）")
 
 # 检查CUDA是否可用，然后检查MPS是否可用，最后回退到CPU
 device = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
 model_id = 'LLM-Research/Meta-Llama-3-8B-Instruct'
+model_id = 'qwen/Qwen1.5-1.8B-Chat'
+model_id = 'LLM-Research/Llama-3.2-1B-Instruct'
 models_dir = './models'
 model_path = f"{models_dir}/model/{model_id.replace('.', '___')}"
 lora_dir = f"./models/lora/{model_id}"
 torch_dtype = torch.bfloat16
 
+st.title(f"💬 {model_id} 微调演示（甄嬛版）")
 
 # 定义一个函数，用于获取模型和tokenizer
 @st.cache_resource

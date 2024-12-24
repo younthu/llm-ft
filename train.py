@@ -9,13 +9,16 @@ from peft import LoraConfig, TaskType, get_peft_model, PeftModel
 # https://www.modelscope.cn/studios/LLM-Research/Chat_Llama-3-8B/summary
 # llama 3.2有小尺寸版本, Meta-Llama-3.2-1B-Instruct, 1B, 3B, 11B, 90B, 
 # https://ai.meta.com/blog/llama-3-2-connect-2024-vision-edge-mobile-devices/
+# https://ollama.com/library/llama3.2
 # model_id = 'LLM-Research/Meta-Llama-3-8B-Instruct'
-model_id = 'LLM-Research/Meta-Llama-3.2-3B-Instruct'
+# https://github.com/meta-llama/llama-recipes/blob/main/recipes/quickstart/Getting_to_know_Llama.ipynb
+# https://www.llama.com/docs/how-to-guides/fine-tuning/
+model_id = 'LLM-Research/Llama-3.2-1B-Instruct'
 
 # https://www.modelscope.cn/models/qwen/Qwen1.5-4B-Chat/summary
 # # qwen有尺寸比较小的模型: https://qwenlm.github.io/blog/qwen1.5/， 列表里面有Qwen1.5-0.5B, Qwen1.5-1.8B, Qwen1.5-4B, Qwen1.5-7B, 14B, 72B
 # model_id = 'qwen/Qwen1.5-4B-Chat'
-model_id = 'qwen/Qwen1.5-1.8B-Chat'
+#model_id = 'qwen/Qwen1.5-1.8B-Chat'
 
 # 检查CUDA是否可用，然后检查MPS是否可用，最后回退到CPU
 device = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
