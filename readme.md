@@ -3,19 +3,15 @@
 
 # Quick start
 
-1. 下载代码: `wget --no-check-certificate https://files.junyao.tech/uPic/llama3-ft.zip`
-1. `mkdir llama3-ft`
-1. `mv llama3-ft.zip llama3-ft`
-1. `cd llama3-ft`
-1. `unzip llama3-ft.zip`
+1. 下载代码: `git clone https://github.com/younthu/llm-ft.git`
 2. 搭建Anaconda:
    1. `wget https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/Anaconda3-2024.06-1-Linux-x86_64.sh`
    2. `chmod +x Anaconda3-2024.06-1-Linux-86_64.sh`
    3. `./Anaconda3-2024.06-1-Linux-86_64.sh`
    4. `conda init`
    5. `conda activate`
-3. `conda create -n llama3-ft python=3.10`
-4. `conda activate llama3-ft`
+3. `conda create -n llm-ft python=3.10`
+4. `conda activate llm-ft`
 5. `pip install -r requirements.txt`
 6. (optional), 如果是M2, 跑的时候可能会遇到`Cannot copy out of meta tensor; no data`
    ~~~sh
