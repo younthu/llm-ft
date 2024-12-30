@@ -13,6 +13,7 @@ from peft import LoraConfig, TaskType, get_peft_model, PeftModel
 # model_id = 'LLM-Research/Meta-Llama-3-8B-Instruct'
 # https://github.com/meta-llama/llama-recipes/blob/main/recipes/quickstart/Getting_to_know_Llama.ipynb
 # https://www.llama.com/docs/how-to-guides/fine-tuning/
+model_id = 'LLM-Research/Llama-3.2-11B-Vision-Instruct'
 model_id = 'LLM-Research/Llama-3.2-1B-Instruct'
 
 # https://www.modelscope.cn/models/qwen/Qwen1.5-4B-Chat/summary

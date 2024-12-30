@@ -60,6 +60,20 @@
    ~~~
 9.  训练完成以后就可以启动聊天窗口聊天了: `streamlit run chat.py`
 
+# 问题列表
+1. `Llam3.2_11b_vision_instruct`, 问你好的时候，AI有胡说八道.`LLM-Research/Llama-3.2-1B-Instruct`不存在这种问题. 
+1. `Llam3.2_11b_vision_instruct`, 问你好的时候，AI有不停重复的内容。`LLM-Research/Llama-3.2-1B-Instruct`不存在这种问题. 
+1. `Llam3.2_11b_vision_instruct`, 问你好的时候，AI有乱码.`LLM-Research/Llama-3.2-1B-Instruct`不存在这种问题. 
+1. `Llam3.2_11b_vision_instruct`, 问你好的时候，AI有一个莫名其妙的双引号。`LLM-Research/Llama-3.2-1B-Instruct`不存在这种问题. 
+1. `Llam3.2_11b_vision_instruct`, 问你好的时候，AI有胡说八道.
+1. 
+1. 
 
+# 截图
 Llama3.2-1b-instruct
+
 ![](/screenshots/Llam3.2_1b_instruct.png)
+
+Llama3.2-11b-vision-instruct
+
+![](/screenshots/Llam3.2_11b_vision_instruct.png)
