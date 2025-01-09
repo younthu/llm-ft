@@ -58,7 +58,12 @@
     # https://www.modelscope.cn/models/qwen/Qwen1.5-4B-Chat/summary
     model_id = 'qwen/Qwen1.5-4B-Chat'
    ~~~
-9.  训练完成以后就可以启动聊天窗口聊天了: `streamlit run chat.py`
+   或者，用llama 3.2 1B/3B, 'LLM-Research/Llama-3.2-1B-Instruct'/'LLM-Research/Llama-3.2-3B-Instruct', 注意: Llama3.2 11B及以上版本是为vision准备的，微调出来的有问题。
+
+9.  训练完成以后就可以启动聊天窗口聊天了: 
+   1. 启动聊天服务: `streamlit run chat.py`
+   1. 打开web: `http://localhost:8501`
+   1. (optional) 如果是远程服务器，可以ssh隧道连过去`ssh -L 8501:localhost:8501 zhiyong@35.84.190.xxx`，然后本地就可以打开远程网页了`http://localhost:8501`，不用开放远程主机的端口。
 
 # 问题列表
 1. `Llam3.2_11b_vision_instruct`, 问你好的时候，AI有胡说八道.`LLM-Research/Llama-3.2-1B-Instruct`不存在这种问题. 
