@@ -1,3 +1,4 @@
+import tokenize
 import pandas as pd
 import torch
 from datasets import Dataset
@@ -100,7 +101,8 @@ def train():
         }
 
     # tokenized_id = list(range(1, 10000)).map(process_func, remove_columns=ds.column_names)
-    tokenized_id = map(range(1, 10000), process_func)
+    #tokenized_id = map(range(1, 10000), process_func)
+    tokenized_id = [process_func(item) for item in range(1, 10000)]
 
     tokenizer.decode(list(filter(lambda x: x != -100, tokenized_id[1]["labels"])))
 
