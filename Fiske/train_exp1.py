@@ -1,4 +1,3 @@
-import tokenize
 import pandas as pd
 import torch
 from datasets import Dataset
@@ -26,7 +25,7 @@ model_id = 'LLM-Research/Llama-3.2-1B-Instruct'
 device = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
 
 models_dir = './models'
-dataset_file = './dataset/huanhuan.json'
+dataset_file = './Fiske/data/exp1/simple_html.json'
 # modelscope/hub/snapshot_download.py:75 会把模型改名 name = name.replace('.', '___')
 model_path = f"{models_dir}/model/{model_id.replace('.', '___')}"
 checkpoint_dir = f"./models/checkpoint/{model_id}"
@@ -54,27 +53,9 @@ def train():
     model.enable_input_require_grads()  # 开启梯度检查点时，要执行该方法
 
     # 加载数据
-    # df = pd.read_json(dataset_file)
-    # ds = Dataset.from_pandas(df)
-    # print(ds[:3])
-    question = "请把下面的fiske html转换成json格式."
-    sample_html = """
-~~~html
-<html>
-    <body>
-        <h1>New York University</h1>
-        <p>22 Washington Square, New York, NY 10012</p>
-    </body>
-</html>
-~~~
-    """
-
-    output = """
-{
-    "name": "New York University",
-    "address": "22 Washington Square, New York, NY 10012"
-}
-"""
+    df = pd.read_json(dataset_file)
+    ds = Dataset.from_pandas(df)
+    print(ds[:3])
 
     # 处理数据
     tokenizer = AutoTokenizer.from_pretrained(model_path, use_fast=False, trust_remote_code=True)
@@ -84,9 +65,9 @@ def train():
         MAX_LENGTH = 384  # Llama分词器会将一个中文字切分为多个token，因此需要放开一些最大长度，保证数据的完整性
         input_ids, attention_mask, labels = [], [], []
         instruction = tokenizer(
-            f"<|start_header_id|>user<|end_header_id|>\n\n{question + sample_html}<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+            f"<|start_header_id|>user<|end_header_id|>\n\n{item['instruction'] + item['input']}<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
             add_special_tokens=False)  # add_special_tokens 不在开头加 special_tokens
-        response = tokenizer(f"{output}<|eot_id|>", add_special_tokens=False)
+        response = tokenizer(f"{item['output']}<|eot_id|>", add_special_tokens=False)
         input_ids = instruction["input_ids"] + response["input_ids"] + [tokenizer.pad_token_id]
         attention_mask = instruction["attention_mask"] + response["attention_mask"] + [1]  # 因为eos token咱们也是要关注的所以 补充为1
         labels = [-100] * len(instruction["input_ids"]) + response["input_ids"] + [tokenizer.pad_token_id]
@@ -100,9 +81,7 @@ def train():
             "labels": labels
         }
 
-    # tokenized_id = list(range(1, 10000)).map(process_func, remove_columns=ds.column_names)
-    #tokenized_id = map(range(1, 10000), process_func)
-    tokenized_id = [process_func(item) for item in range(1, 10000)]
+    tokenized_id = ds.map(process_func, remove_columns=ds.column_names)
 
     tokenizer.decode(list(filter(lambda x: x != -100, tokenized_id[1]["labels"])))
 
@@ -171,6 +150,4 @@ def infer(prompt="你是谁？"):
 
 if __name__ == '__main__':
     train()
-    #res = infer(prompt="你是谁？")
-    # print(res)
-    print(f'Train exp1 done.')
+    print("Train done.")

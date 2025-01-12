@@ -1,0 +1,7 @@
+[
+    {
+        "instruction": "请把下面的fiske html转换成json",
+        "input": "\n<html>\n    <body>\n        <h1>New York University</h1>\n        <p>22 Washington Square, New York, NY 10012</p>\n    </body>\n</html>\n",
+        "output": "\n{\n    \"name\": \"New York University\",\n    \"address\": \"22 Washington Square, New York, NY 10012\"\n}\n"
+    }
+]
