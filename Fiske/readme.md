@@ -19,6 +19,11 @@
 # 实验 1
 训练llm, 把简单的html内容转换成json
 
+1. 一个包含 `<h1>`标签的html, 把`<h1>`里面的内容提取
+
+# 问题
+1. 用llama3.2 1b + simple_html.json 训练, 不停重复同一条json记录.
+1. 
 # Refs
 1. https://www.datacamp.com/tutorial/llama3-fine-tuning-locally 
 1. https://blog.csdn.net/zwqjoy/article/details/132772751, 讲指令格式。

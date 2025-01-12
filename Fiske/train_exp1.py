@@ -25,7 +25,7 @@ model_id = 'LLM-Research/Llama-3.2-1B-Instruct'
 device = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
 
 models_dir = './models'
-dataset_file = './Fiske/data/exp1/simple_html.json'
+dataset_file = './Fiske/data/exp1/simple_html2.json'
 # modelscope/hub/snapshot_download.py:75 会把模型改名 name = name.replace('.', '___')
 model_path = f"{models_dir}/model/{model_id.replace('.', '___')}"
 checkpoint_dir = f"./models/checkpoint/{model_id}"
