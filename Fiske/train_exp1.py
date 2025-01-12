@@ -14,7 +14,7 @@ from peft import LoraConfig, TaskType, get_peft_model, PeftModel
 # https://github.com/meta-llama/llama-recipes/blob/main/recipes/quickstart/Getting_to_know_Llama.ipynb
 # https://www.llama.com/docs/how-to-guides/fine-tuning/
 model_id = 'LLM-Research/Llama-3.2-11B-Vision-Instruct'
-model_id = 'LLM-Research/Llama-3.2-1B-Instruct'
+model_id = 'LLM-Research/Llama-3.2-3B-Instruct'
 
 # https://www.modelscope.cn/models/qwen/Qwen1.5-4B-Chat/summary
 # # qwen有尺寸比较小的模型: https://qwenlm.github.io/blog/qwen1.5/， 列表里面有Qwen1.5-0.5B, Qwen1.5-1.8B, Qwen1.5-4B, Qwen1.5-7B, 14B, 72B
@@ -25,7 +25,7 @@ model_id = 'LLM-Research/Llama-3.2-1B-Instruct'
 device = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
 
 models_dir = './models'
-dataset_file = './Fiske/data/exp1/simple_html2.json'
+dataset_file = './Fiske/data/exp1/simple_html3.json'
 # modelscope/hub/snapshot_download.py:75 会把模型改名 name = name.replace('.', '___')
 model_path = f"{models_dir}/model/{model_id.replace('.', '___')}"
 checkpoint_dir = f"./models/checkpoint/{model_id}"
