@@ -81,7 +81,7 @@ def train():
             "attention_mask": attention_mask,
             "labels": labels
         }
-        print(f'res: {res}')
+        # print(f'res: {res}')
         return res
 
     tokenized_id = ds.map(process_func, remove_columns=ds.column_names)
