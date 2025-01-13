@@ -87,13 +87,15 @@
    ~~~
 
 
+  含单引号, short_intro第一句， education后面加了一个单引号。
    ~~~html
     请把下面的fiske html数据转换成json:
 
     <html> <body> <h1>Wheaton College (IL)</h1> <p> 501 College Avenue, Wheaton, IL 60187</p> 
-    <div>Wheaton is at the top of the academic heap in evangelical education, challenged only by Pepperdine (with its Malibu digs) and traditional competitors such as Gordon and Calvin. Students must not only follow Wheaton’s stringent code of conduct but also affirm their personal faith in Jesus Christ. Wheaton’s low tuition makes it relatively affordable. The worldly temptations of Chicago hover less than an hour away.</div> </body> </html>
+    <div>Wheaton is at the top of the academic heap in evangelical education', challenged only by Pepperdine (with its Malibu digs) and traditional competitors such as Gordon and Calvin. Students must not only follow Wheaton’s stringent code of conduct but also affirm their personal faith in Jesus Christ. Wheaton’s low tuition makes it relatively affordable. The worldly temptations of Chicago hover less than an hour away.</div> </body> </html>
    ~~~
 
+# 实验4 
 **截图**：
 
    ![](./screenshots/exp3_s1.png)
