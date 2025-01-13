@@ -65,10 +65,20 @@
 1. 微调速度明显下降, 要5个半小时。
 1. Loss很快下降为0.
 1. 结果, 输出想要的json了。
-1. __问题:__ 结果末尾出现了`<|eom_id|>`, 原因未知，解决办法未知.
+1. __问题1:__ 结果末尾出现了`<|eom_id|>`, 原因未知，解决办法未知.
     1. 这次的数据集里面有一个问题， short_intro的<div>标签和</p>配对了。后面把</p>换成</div>再试一下看看.
     1. 这个标记也不是每次都出现，换Wheaton College (IL)的prompt的时候就不出现这种标记了。
     1. 实验对比下来发现，这个标记只在会话的第一次回复里面出现，可以看后面的对比截图。
+1. __问题2:__ 单引号没有被正确处理。short_intro被切割成好几段，出现多个'short_intro'.
+    1. 豆包能处理json字符串单引号双引号转义的问题. Llama 3.2 3B也可以, 3.2 3B用的json字符串用的是双引号，微调处理的是用单引号。
+        ~~~
+        把下面的html按div转换成json数组：
+
+        <div>Wheaton is "at the top of the academic heap in evangelical education', challenged only by Pepperdine (with its Malibu digs) and traditional competitors such as Gordon and Calvin. Students must not only follow Wheaton’s stringent code of conduct but also affirm their personal faith in Jesus Christ. Wheaton’s low tuition makes it relatively affordable. The worldly temptations of Chicago hover less than an hour away.</div>
+        <div>Wheaton is at the top of the academic heap in evangelical education', challenged only by Pepperdine (with its Malibu digs) and traditional competitors such as Gordon and Calvin. Students must not only follow Wheaton’s stringent code of conduct but also affirm their personal faith in Jesus Christ. Wheaton’s low tuition makes it relatively affordable. The worldly temptations of Chicago" hover less than an hour away.</div>
+        ~~~
+    1. dict里的字符串to_str的时候默认是单引号引起来的。
+1. __问题3:__ 大学名字变形了, `Wheaton College (IL)` 提取成
 1. 测试prompt:
    ~~~html
     请把下面的fiske html转换成json格式:
